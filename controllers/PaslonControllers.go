@@ -71,7 +71,7 @@ func (controllers *ContorllerPaslon) CreatePaslon(c echo.Context) error {
 
 	paslon := models.Paslon{
 		Name:      request.Name,
-		Visi:      request.Visi,
+		Vision:    request.Vision,
 		CreatedAt: time.Now(),
 		UpdatedAt: time.Now(),
 	}
@@ -119,8 +119,8 @@ func (controllers *ContorllerPaslon) UpdatePaslon(c echo.Context) error {
 		paslon.Name = request.Name
 	}
 
-	if request.Visi != "" {
-		paslon.Visi = request.Visi
+	if request.Vision != "" {
+		paslon.Vision = request.Vision
 	}
 
 	paslon.UpdatedAt = time.Now()
@@ -164,7 +164,7 @@ func convertPaslonResponse(paslon models.Paslon) dtos.PaslonResponse {
 	response := dtos.PaslonResponse{
 		ID:        paslon.ID,
 		Name:      paslon.Name,
-		Visi:      paslon.Visi,
+		Vision:    paslon.Vision,
 		CreatedAt: paslon.CreatedAt,
 		UpdatedAt: paslon.UpdatedAt,
 	}

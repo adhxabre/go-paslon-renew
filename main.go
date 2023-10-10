@@ -23,5 +23,5 @@ func main() {
 	// routes
 	routes.RouteInit(e.Group("/api/v1"))
 
-	e.Logger.Fatal(e.Start("localhost:5000"))
+	e.Logger.Fatal(e.Start(":5000"))
 }

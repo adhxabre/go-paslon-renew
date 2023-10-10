@@ -1,12 +1,23 @@
 package models
 
-import "time"
+import (
+	"time"
+
+	uuid "github.com/google/uuid"
+)
 
 type Vote struct {
-	ID        int       `json:"id" gorm:"primaryKey:autoIncrement"`
-	PaslonID  int       `json:"paslon_id"`
-	Paslon    Paslon    `gorm:"foreignKey:PaslonID"`
-	VoterName string    `json:"voter_name" gorm:"type: varchar(255)"`
-	CreatedAt time.Time `json:"created_at"`
-	UpdatedAt time.Time `json:"updated_at"`
+	ID        uuid.UUID        `json:"id" gorm:"primaryKey:autoIncrement"`
+	PaslonID  uuid.UUID        `json:"paslon_id"`
+	Paslon    Paslon           `gorm:"foreignKey:PaslonID"`
+	UserID    uuid.UUID        `json:"user_id"`
+	User      UserVoteResponse `json:"user"`
+	CreatedAt time.Time        `json:"created_at"`
+	UpdatedAt time.Time        `json:"updated_at"`
+}
+
+type VoteResponse struct {
+	ID       uuid.UUID `json:"id"`
+	PaslonID uuid.UUID `json:"paslon_id"`
+	Paslon   Paslon    `gorm:"foreignKey:PaslonID"`
 }

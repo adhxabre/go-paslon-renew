@@ -72,7 +72,7 @@ func (controllers *ControllerVote) CreateVote(c echo.Context) error {
 
 	data := models.Vote{
 		PaslonID:  request.PaslonID,
-		VoterName: request.VoterName,
+		UserID:    request.UserID,
 		CreatedAt: time.Now(),
 		UpdatedAt: time.Now(),
 	}
@@ -94,12 +94,12 @@ func (controllers *ControllerVote) CreateVote(c echo.Context) error {
 
 func convertVoteResponse(vote models.Vote) dtos.VoteResponse {
 	response := dtos.VoteResponse{
-		ID:        vote.ID,
-		VoterName: vote.VoterName,
+		ID:   vote.ID,
+		User: dtos.UserResponseToVote{},
 		Paslon: dtos.PaslonResponseToVote{
-			ID:   vote.Paslon.ID,
-			Name: vote.Paslon.Name,
-			Visi: vote.Paslon.Visi,
+			ID:     vote.Paslon.ID,
+			Name:   vote.Paslon.Name,
+			Vision: vote.Paslon.Vision,
 		},
 	}
 
@@ -111,12 +111,12 @@ func convertMultipleVotesResponse(votes []models.Vote) []dtos.VoteResponse {
 
 	for _, vote := range votes {
 		response := dtos.VoteResponse{
-			ID:        vote.ID,
-			VoterName: vote.VoterName,
+			ID:   vote.ID,
+			User: dtos.UserResponseToVote{},
 			Paslon: dtos.PaslonResponseToVote{
-				ID:   vote.Paslon.ID,
-				Name: vote.Paslon.Name,
-				Visi: vote.Paslon.Visi,
+				ID:     vote.Paslon.ID,
+				Name:   vote.Paslon.Name,
+				Vision: vote.Paslon.Vision,
 			},
 		}
 		responses = append(responses, response)

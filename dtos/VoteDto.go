@@ -1,12 +1,14 @@
 package dtos
 
+import uuid "github.com/google/uuid"
+
 type VoteRequest struct {
-	PaslonID  int    `json:"paslon_id" form:"paslon_id" validate:"required"`
-	VoterName string `json:"voter_name" form:"voter_name" validate:"required"`
+	PaslonID uuid.UUID `json:"paslon_id" form:"paslon_id" validate:"required"`
+	UserID   uuid.UUID `json:"user_id" form:"user_id" validate:"required"`
 }
 
 type VoteResponse struct {
-	ID        int                  `json:"id"`
-	VoterName string               `json:"voter_name"`
-	Paslon    PaslonResponseToVote `json:"paslon"`
+	ID     uuid.UUID            `json:"id"`
+	Paslon PaslonResponseToVote `json:"paslon"`
+	User   UserResponseToVote   `json:"user"`
 }

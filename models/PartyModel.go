@@ -1,18 +1,22 @@
 package models
 
-import "time"
+import (
+	"time"
+
+	uuid "github.com/google/uuid"
+)
 
 type Party struct {
-	ID        int       `json:"id" gorm:"primaryKey:autoIncrement"`
+	ID        uuid.UUID `json:"id" gorm:"primaryKey:autoIncrement"`
 	Name      string    `json:"name" gorm:"type: varchar(255)"`
-	PaslonID  int       `json:"paslonId"` // Tambahkan field ini
+	PaslonID  uuid.UUID `json:"paslon_id"` // Tambahkan field ini
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
 type PartyResponse struct {
-	ID   int    `json:"id"`
-	Name string `json:"name"`
+	ID   uuid.UUID `json:"id"`
+	Name string    `json:"name"`
 }
 
 func (Party) TableName() string {
